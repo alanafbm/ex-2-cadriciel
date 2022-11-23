@@ -12,7 +12,7 @@ class AuteursEditeursController extends Controller
     {
         return view('auteurs.editeur', [
             'auteur' => Auteur::findOrFail($id),
-            'editeur' => Editeur::find(1)
+            'editeurs' => (Auteur::findOrFail($id))->editeur()->get()
         ]);
     }
 
@@ -22,6 +22,8 @@ class AuteursEditeursController extends Controller
 
         // On assume que la requête
         $editeur = Editeur::create($request->all());
+        $auteur = Auteur::findOrFail($id);
+        $auteur->editeur()->attach($editeur->id);
 
         // Retourne un message de succès
         return "Vous avez ajouter l'editeur {$editeur->id} !";

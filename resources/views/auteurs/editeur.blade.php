@@ -1,10 +1,10 @@
-
+@foreach ($editeurs as $editeur)
     
 <ul>
     <li>{{ $editeur->nom }}</li><!-- Afficher ici la liste des éditeurs reliés à cet auteur -->
 </ul>
 
-
+@endforeach
 
 <form action="{{ route('auteur.createEditeur', ['id' => $auteur->id]) }}" method="POST">
     @csrf
